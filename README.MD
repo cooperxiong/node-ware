@@ -1,7 +1,7 @@
 node-ware
 =========
 
-middleware for nodejs,like decorator.
+middleware for nodejs, like decorator.
 
 ## Installation
 
