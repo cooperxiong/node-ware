@@ -50,7 +50,7 @@
   "dependencies": {
     "co": "^4.6.0"
   },
-  "description": "middleware for nodejs,like decorator",
+  "description": "middleware for nodejs,like decorator.",
   "devDependencies": {},
   "directories": {},
   "dist": {

@@ -1,7 +1,7 @@
 node-ware
 =========
 
-middleware for nodejs
+middleware for nodejs,like decorator.
 
 ## Installation
 
@@ -51,18 +51,8 @@ let proxy = function (input) {
     return input
 };
 
-let logger = function (input) {
-    log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
-    return input
-};
-
 let time = function (input) {
     input.time = new Date();
-    return input
-};
-
-let timeEnd = function (input) {
-    input.timeEnd = new Date();
     return input
 };
 
@@ -78,6 +68,16 @@ let rp = function (input, output) {
             }
         })
     })
+};
+
+let timeEnd = function (input) {
+    input.timeEnd = new Date();
+    return input
+};
+
+let logger = function (input) {
+    log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
+    return input
 };
 
 function store(input, output) {
