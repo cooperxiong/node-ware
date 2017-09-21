@@ -23,8 +23,7 @@
     "tmp": "tmp/node-ware-1.0.0.tgz_1505921082492_0.35534808435477316"
   },
   "_npmUser": {
-    "name": "cooperxiong",
-    "email": "cooperxiong@outlook.com"
+    "name": "cooperxiong"
   },
   "_npmVersion": "4.2.0",
   "_phantomChildren": {},
@@ -48,7 +47,9 @@
   "author": {
     "name": "Cooper Xiong"
   },
-  "dependencies": {},
+  "dependencies": {
+    "co": "^4.6.0"
+  },
   "description": "middleware for nodejs",
   "devDependencies": {},
   "directories": {},
@@ -63,11 +64,11 @@
   "main": "index.js",
   "maintainers": [
     {
-      "name": "cooperxiong",
-      "email": "cooperxiong@outlook.com"
+      "name": "cooperxiong"
     }
   ],
   "name": "node-ware",
+  "repository": "https://github.com/cooperxiong/node-ware.git",
   "optionalDependencies": {},
   "readme": "ERROR: No README data found!",
   "scripts": {
