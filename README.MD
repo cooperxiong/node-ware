@@ -3,7 +3,9 @@ node-ware
 
 [![NPM Version][npm-image]][npm-url]
 
-middleware for nodejs, like decorator.
+Middleware for nodejs, like decorator.
+
+Middleware functions for node-ware are functions that have access to the input object and the output object. When the run() is invoked, the middlewares will get executed in the order of their use calls or their order in the array, and return a Promise contains the final input and output if resolved.
 
 ## Installation
 
@@ -38,8 +40,9 @@ ware.run().then(([input, output]) => {
 
 ## A complete example
 
-```js
+A ware for request, which makes it easier to add some functions like logger, timer and store during the request.
 
+```js
 const co = require('co');
 const fs = require('fs');
 const log = require('pino')();
