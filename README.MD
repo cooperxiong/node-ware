@@ -40,7 +40,7 @@ ware.run().then(([input, output]) => {
 
 ## A complete example
 
-A ware for request, which makes it easier and cleaner to add some functions like logger, timer and store during the request.
+A ware for request, which makes it easier and cleaner to add some functions like logger, timer and storer during the request.
 
 ```js
 const co = require('co');
@@ -82,7 +82,7 @@ let logger = function (input) {
     log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
 };
 
-let store = function (input, output) {
+let storer = function (input, output) {
     fs.writeFile(input.description + '.txt', output.body, (err) => {
         if (err) throw err;
         console.log('The file ' + input.description + '.txt has been saved!');
@@ -95,7 +95,7 @@ wrequest
     .use(timeEnd)
     .use(() => ([, {message: "OK"}]))
     .use(logger)
-    .use(store);
+    .use(storer);
 
 co(function* () {
 

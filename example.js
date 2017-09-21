@@ -41,7 +41,7 @@ let logger = function (input) {
     log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
 };
 
-let store = function (input, output) {
+let storer = function (input, output) {
     fs.writeFile(input.description + '.txt', output.body, (err) => {
         if (err) throw err;
         console.log('The file ' + input.description + '.txt has been saved!');
@@ -54,7 +54,7 @@ wrequest
     .use(timeEnd)
     .use(() => ([, {message: "OK"}]))
     .use(logger)
-    .use(store);
+    .use(storer);
 
 co(function* () {
 
