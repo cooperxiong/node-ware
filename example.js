@@ -70,7 +70,7 @@ co(function* () {
         .pre(() => ({description: 'req2'}))
         .run({url: "http://example.com/"});
 
-    console.log(res1.statusCode, input1, res1.message, res2.statusCode);
+    console.log(input1, res1.statusCode, res1.message, res2.statusCode, res2.message);
 
 }).catch(err => {
     console.log(err);

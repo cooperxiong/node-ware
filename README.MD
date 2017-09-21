@@ -111,7 +111,7 @@ co(function* () {
         .pre(() => ({description: 'req2'}))
         .run({url: "http://example.com/"});
 
-    console.log(res1.statusCode, input1, res1.message, res2.statusCode);
+    console.log(input1, res1.statusCode, res1.message, res2.statusCode, res2.message);
 
 }).catch(err => {
     console.log(err);
@@ -127,29 +127,28 @@ console's output as follows
   [Function: timeEnd],
   [Function],
   [Function: logger],
-  [Function: store] ]
-  
-{"pid":12576,"hostname":"Cooper","level":30,"time":1505986250516,"msg":"req1 start at 2017-09-21T09:30:49.135Z end at 2017-09-21T09:30:50.515Z takes 1380 ms","v":1}
+  [Function: storer] ]
+
+{"pid":89464,"hostname":"Cooper-X","level":30,"time":1506002581239,"msg":"req1 start at 2017-09-21T14:02:59.244Z end at 2017-09-21T14:03:01.235Z takes 1991 ms","v":1}
 
 [ [Function: time],
   [Function: rp],
   [Function: timeEnd],
   [Function: logger],
-  [Function: store] ]
-  
+  [Function: storer] ]
+
 The file req1.txt has been saved!
 
-{"pid":12576,"hostname":"Cooper","level":30,"time":1505986251928,"msg":"req2 start at 2017-09-21T09:30:50.524Z end at 2017-09-21T09:30:51.927Z takes 1403 ms","v":1}
+{"pid":89464,"hostname":"Cooper-X","level":30,"time":1506002583225,"msg":"req2 start at 2017-09-21T14:03:01.244Z end at 2017-09-21T14:03:03.225Z takes 1981 ms","v":1}
 
-200 { url: 'http://example.com/',
+{ url: 'http://example.com/',
   description: 'req1',
-  time: 2017-09-21T09:30:49.135Z,
-  timeEnd: 2017-09-21T09:30:50.515Z } 'OK' 200
-  
+  time: 2017-09-21T14:02:59.244Z,
+  timeEnd: 2017-09-21T14:03:01.235Z } 200 'OK' 200 undefined
+
 The file req2.txt has been saved!
 
 ```
-
 
 ## Tests
 

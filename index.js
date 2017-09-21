@@ -19,18 +19,18 @@ class Ware {
                 return [input, output]
             }
             const next = self._middlewares[i](input, output);
-            let next_output, _input, _output;
+            let _next, _input, _output;
             if (next && typeof next.then === 'function') {
-                next_output = yield next;
+                _next = yield next;
             } else {
-                next_output = next
+                _next = next
             }
-            if (!next_output) {
+            if (!_next) {
                 [_input, _output] = [,]
-            } else if (typeof next_output === 'object' && !next_output.length) {
-                [_input, _output] = [next_output,]
-            } else if (next_output.length && next_output.length === 2) {
-                [_input, _output] = next_output
+            } else if (typeof _next === 'object' && !_next.length) {
+                [_input, _output] = [_next,]
+            } else if (_next.length && _next.length === 2) {
+                [_input, _output] = _next
             } else {
                 throw new Error('There is no more than two return values')
             }
