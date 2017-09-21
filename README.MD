@@ -1,6 +1,8 @@
 node-ware
 =========
 
+[![NPM Version][https://img.shields.io/npm/v/node-ware.svg]][https://www.npmjs.com/package/node-ware]
+
 middleware for nodejs, like decorator.
 
 ## Installation
