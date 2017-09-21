@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "node-ware@^1.0.0",
+        "scope": null,
+        "escapedName": "node-ware",
+        "name": "node-ware",
+        "rawSpec": "^1.0.0",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "E:\\Node\\exercise"
+    ]
+  ],
+  "_from": "node-ware@>=1.0.0 <2.0.0",
+  "_id": "node-ware@1.0.0",
+  "_inCache": true,
+  "_location": "/node-ware",
+  "_nodeVersion": "7.10.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/node-ware-1.0.0.tgz_1505921082492_0.35534808435477316"
+  },
+  "_npmUser": {
+    "name": "cooperxiong",
+    "email": "cooperxiong@outlook.com"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "node-ware@^1.0.0",
+    "scope": null,
+    "escapedName": "node-ware",
+    "name": "node-ware",
+    "rawSpec": "^1.0.0",
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-ware/-/node-ware-1.0.0.tgz",
+  "_shasum": "7e990ec8a32c81cb7e8ed2735a561f8f0dfa7992",
+  "_shrinkwrap": null,
+  "_spec": "node-ware@^1.0.0",
+  "_where": "E:\\Node\\exercise",
+  "author": {
+    "name": "Cooper Xiong"
+  },
+  "dependencies": {},
+  "description": "middleware for node",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "7e990ec8a32c81cb7e8ed2735a561f8f0dfa7992",
+    "tarball": "https://registry.npmjs.org/node-ware/-/node-ware-1.0.0.tgz"
+  },
+  "keywords": [
+    "middleware"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "cooperxiong",
+      "email": "cooperxiong@outlook.com"
+    }
+  ],
+  "name": "node-ware",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
