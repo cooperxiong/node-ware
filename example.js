@@ -64,7 +64,7 @@ co(function* () {
         .pre(() => ({description: 'req1'}))
         .run({url: "http://example.com/"});
 
-    console.log(wrequest.hold()); // Anonymous functions were removed after runing
+    console.log(wrequest.hold()); // Anonymous functions were removed after running
 
     let [, res2] = yield wrequest
         .pre(() => ({description: 'req2'}))
