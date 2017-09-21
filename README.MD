@@ -1,7 +1,7 @@
 node-ware
 =========
 
-[![NPM Version][https://img.shields.io/npm/v/node-ware.svg]][https://www.npmjs.com/package/node-ware]
+[![NPM Version][npm-image]][npm-url]
 
 middleware for nodejs, like decorator.
 
@@ -159,3 +159,6 @@ no scripts
 ## Contributing
 
 ...
+
+[npm-image]: https://img.shields.io/npm/v/node-ware.svg
+[npm-url]: https://www.npmjs.com/package/node-ware
