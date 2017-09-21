@@ -52,4 +52,4 @@ class Ware {
     }
 }
 
-module.exports = Ware
+module.exports = Ware;

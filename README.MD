@@ -1,26 +1,40 @@
-Number Formatter
+node-ware
 =========
 
-A small library that adds commas to numbers
+middleware for nodejs
 
 ## Installation
 
-  `npm install @cooperxiong/number-formatter`
+  `npm i node-ware`
 
 ## Usage
 
-    var numFormatter = require('@jdaudier/number-formatter');
-
-    var formattedNum = numFormatter(35666);
+    const Ware = require('node-ware');
+    let ware = new Ware();
+    
+    function addA(input, output) {
+        input.a = 'a';
+        return [input, output]
+    }
+    
+    function addB(input, output) {
+        output.b = 'b';
+        return [input, output]
+    }
+    
+    ware.use(addA);
+    ware.use(addB);
+    ware.run().then(([input, output]) => {
+        console.log(input, output);
+    }).catch(err => {
+        console.log(err);
+    });
   
-  
-  Output should be `35,666`
-
 
 ## Tests
 
-  `npm test`
+  `no scripts`
 
 ## Contributing
 
-In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.
+N/A at present
