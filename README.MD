@@ -79,12 +79,12 @@ let logger = function (input) {
     log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
 };
 
-function store(input, output) {
+let store = function (input, output) {
     fs.writeFile(input.description + '.txt', output.body, (err) => {
         if (err) throw err;
         console.log('The file ' + input.description + '.txt has been saved!');
     });
-}
+};
 
 wrequest
     .use(time)
@@ -102,7 +102,7 @@ co(function* () {
         .pre(() => ({description: 'req1'}))
         .run({url: "http://example.com/"});
 
-    console.log(wrequest.hold());
+    console.log(wrequest.hold()); // Anonymous functions were removed after runing
 
     let [, res2] = yield wrequest
         .pre(() => ({description: 'req2'}))
