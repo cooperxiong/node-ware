@@ -40,7 +40,7 @@ ware.run().then(([input, output]) => {
 
 ## A complete example
 
-A ware for request, which makes it easier to add some functions like logger, timer and store during the request.
+A ware for request, which makes it easier and cleaner to add some functions like logger, timer and store during the request.
 
 ```js
 const co = require('co');
