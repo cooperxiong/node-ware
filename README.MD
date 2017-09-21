@@ -43,7 +43,7 @@ ware.run().then(([input, output]) => {
 const co = require('co');
 const fs = require('fs');
 const log = require('pino')();
-const Ware = require('node-ware');
+const Ware = require('./index');
 const request = require('request');
 
 let wrequest = new Ware();
@@ -53,33 +53,30 @@ let proxy = function (input) {
     return input
 };
 
-let time = function (input) {
-    input.time = new Date();
-    return input
+let time = function () {
+    return {time: new Date()}
 };
 
-let rp = function (input, output) {
+let rp = function (input) {
     return new Promise(function (resolve, reject) {
         request(input, function (err, res) {
             if (err) {
                 reject(err)
             } else {
                 setTimeout(() => {
-                    resolve([input, output = res])
+                    resolve([, res])
                 }, 1000)
             }
         })
     })
 };
 
-let timeEnd = function (input) {
-    input.timeEnd = new Date();
-    return input
+let timeEnd = function () {
+    return {timeEnd: new Date()}
 };
 
 let logger = function (input) {
     log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
-    return input
 };
 
 function store(input, output) {
@@ -91,9 +88,9 @@ function store(input, output) {
 
 wrequest
     .use(time)
-    .use(() => console.log('test ======='))
     .use(rp)
     .use(timeEnd)
+    .use(() => ([, {message: "OK"}]))
     .use(logger)
     .use(store);
 
@@ -101,17 +98,17 @@ co(function* () {
 
     console.log(wrequest.hold());
 
-    let [, res1] = yield wrequest
-        .pre((input) => Object.assign(input, {description: 'req1'}))
+    let [input1, res1] = yield wrequest
+        .pre(() => ({description: 'req1'}))
         .run({url: "http://example.com/"});
 
     console.log(wrequest.hold());
 
     let [, res2] = yield wrequest
-        .pre((input) => Object.assign(input, {description: 'req2'}))
+        .pre(() => ({description: 'req2'}))
         .run({url: "http://example.com/"});
 
-    console.log(res1.statusCode, res2.statusCode);
+    console.log(res1.statusCode, input1, res1.message, res2.statusCode);
 
 }).catch(err => {
     console.log(err);
@@ -123,28 +120,29 @@ console's output as follows
 
 ```bash
 [ [Function: time],
-  [Function],
   [Function: rp],
   [Function: timeEnd],
+  [Function],
   [Function: logger],
   [Function: store] ]
   
-test =======
-
-{"pid":2632,"hostname":"Cooper","level":30,"time":1505979099084,"msg":"req1 start at 2017-09-21T07:31:37.879Z end at 2017-09-21T07:31:39.082Z takes 1203 ms","v":1}
+{"pid":12576,"hostname":"Cooper","level":30,"time":1505986250516,"msg":"req1 start at 2017-09-21T09:30:49.135Z end at 2017-09-21T09:30:50.515Z takes 1380 ms","v":1}
 
 [ [Function: time],
   [Function: rp],
   [Function: timeEnd],
   [Function: logger],
-  [Function: store] ]  // Anonymous function will be remove after running
+  [Function: store] ]
   
 The file req1.txt has been saved!
 
-{"pid":2632,"hostname":"Cooper","level":30,"time":1505979100226,"msg":"req2 start at 2017-09-21T07:31:39.087Z end at 2017-09-21T07:31:40.226Z takes 1139 ms","v":1}
+{"pid":12576,"hostname":"Cooper","level":30,"time":1505986251928,"msg":"req2 start at 2017-09-21T09:30:50.524Z end at 2017-09-21T09:30:51.927Z takes 1403 ms","v":1}
 
-200 200
-
+200 { url: 'http://example.com/',
+  description: 'req1',
+  time: 2017-09-21T09:30:49.135Z,
+  timeEnd: 2017-09-21T09:30:50.515Z } 'OK' 200
+  
 The file req2.txt has been saved!
 
 ```

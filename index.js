@@ -25,11 +25,11 @@ class Ware {
             } else {
                 next_output = next
             }
-            if (!next_output || !next_output.length) {
+            if (!next_output) {
                 [_input, _output] = [,]
-            } else if (next_output.length === 1) {
+            } else if (typeof next_output === 'object' && !next_output.length) {
                 [_input, _output] = [next_output,]
-            } else if (next_output.length === 2) {
+            } else if (next_output.length && next_output.length === 2) {
                 [_input, _output] = next_output
             } else {
                 throw new Error('There is no more than two return values')

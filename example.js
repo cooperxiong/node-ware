@@ -15,33 +15,30 @@ let proxy = function (input) {
     return input
 };
 
-let time = function (input) {
-    input.time = new Date();
-    return input
+let time = function () {
+    return {time: new Date()}
 };
 
-let rp = function (input, output) {
+let rp = function (input) {
     return new Promise(function (resolve, reject) {
         request(input, function (err, res) {
             if (err) {
                 reject(err)
             } else {
                 setTimeout(() => {
-                    resolve([input, output = res])
+                    resolve([, res])
                 }, 1000)
             }
         })
     })
 };
 
-let timeEnd = function (input) {
-    input.timeEnd = new Date();
-    return input
+let timeEnd = function () {
+    return {timeEnd: new Date()}
 };
 
 let logger = function (input) {
     log.info(`${input.description} start at ${input.time.toISOString()} end at ${input.timeEnd.toISOString()} takes ${input.timeEnd - input.time} ms`);
-    return input
 };
 
 function store(input, output) {
@@ -53,9 +50,9 @@ function store(input, output) {
 
 wrequest
     .use(time)
-    .use(() => console.log('test ======='))
     .use(rp)
     .use(timeEnd)
+    .use(() => ([, {message: "OK"}]))
     .use(logger)
     .use(store);
 
@@ -63,17 +60,17 @@ co(function* () {
 
     console.log(wrequest.hold());
 
-    let [, res1] = yield wrequest
-        .pre((input) => Object.assign(input, {description: 'req1'}))
+    let [input1, res1] = yield wrequest
+        .pre(() => ({description: 'req1'}))
         .run({url: "http://example.com/"});
 
     console.log(wrequest.hold());
 
     let [, res2] = yield wrequest
-        .pre((input) => Object.assign(input, {description: 'req2'}))
+        .pre(() => ({description: 'req2'}))
         .run({url: "http://example.com/"});
 
-    console.log(res1.statusCode, res2.statusCode);
+    console.log(res1.statusCode, input1, res1.message, res2.statusCode);
 
 }).catch(err => {
     console.log(err);
